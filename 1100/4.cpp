@@ -57,6 +57,7 @@ void solve() {
          cin>>v[i];
          if(x==abs(v[i]%2)) c=v[i];
          else{
+            // max(do tarike) screenshot mein dekho
             int f=c+v[i];
             int s=v[i];
             c=max(f,s);
@@ -65,8 +66,6 @@ void solve() {
          x=abs(v[i]%2);
     }
     cout<<m<<endl;
-    // for(int i=0;i<s.size();i++) cout<<"{"<<s[i].first<<" "<<s[i].second<<"}";
-    // cout<<endl;
 }
 
 signed main() {
