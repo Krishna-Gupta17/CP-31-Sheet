@@ -15,7 +15,7 @@ const int INF = LLONG_MAX >> 1;
         //if (primes[i] == 1) {
             //for (int j = i * i; j <= n; j += i) {
                 //primes[j] = 0;
-            //}
+             //}
         //}
     //}
     //return primes;
