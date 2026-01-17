@@ -1,3 +1,6 @@
+//Bevakoof -> a1 % x = an % x canbe written as a1%x-an%x=0 => (a1-an)%x
+//Matlb maximum devisor is nothing but (a1-an) itself
+//then find gcd of them, if anywhere mixup of same and diffent,then on same cpp builtin property take care
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -45,6 +48,33 @@ const int INF = LLONG_MAX >> 1;
 
 void solve() {
     // write your solution here
+    int n;
+    cin>>n;
+    vector<int>v(n);
+    for(auto &x:v){
+        cin>>x;
+    }
+    bool flag=true;
+    int i=0,j=n-1;
+    while(i<j){
+        if(v[i]!=v[j]){
+            flag=false;
+            break;
+        }
+        i++;
+        j--;
+    }
+    if(flag){
+        cout<<0<<endl;
+        return;
+    }
+    int ans=0;
+    while(i<j){
+        ans=__gcd(ans,abs(v[i]-v[j]));
+        i++;
+        j--;
+    }
+    cout<<ans<<endl;
 }
 
 signed main() {
