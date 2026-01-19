@@ -1,9 +1,21 @@
 //In 2nd approach i was first finding sum then only checking is sum/2, sum/3... first possible will be maximum,
 // because to pass (sum-1), min sum should be (sum-1)+(sum-1) which will be greter than sum , if (sum-1)!=sum/2
 // then checking for gcd 
+// This is not complete observation
+
 //In first approach-> We observed that no need to check for sum/2, sum/3....
 //because max gcd will exist when 2 segement will be there only.
-//Because that will be always smaller or eqal to gcd finded 
+//Because that will be always smaller or eqal to gcd finded from 2 segements//
+
+//PROOF:- let m segemnt made from array
+// we have to prove gcd(b1,b2,....bm)<=gcd(b1+b2,b3+b4+...+bm)
+// observe if gcd(b1,b2)=g => g is multiple of both b1 an b2 => b1 + b2 will alos be multiple of g
+// means multiple come in b1, b2 and b1+b2 -> reason for equal sign
+// and more devisor will also form due to b1+b2;
+// For ex- 2,3 -> gcd=1.
+//  but when 2+3=5 -> devisors=1,5
+// and this new greater devisor will be reason for greater sign
+// formation is always better so all 2 segements which can be taken will be checked for max gcd
 #include <bits/stdc++.h>
 using namespace std;
 
