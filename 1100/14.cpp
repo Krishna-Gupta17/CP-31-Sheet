@@ -1,3 +1,5 @@
+//Simple approach just first go through one side, no need for going from other side observe
+//once done above then check how more lesser or greater ( lesser for left to right and greater for right to left depending on side choosen) we can include
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -73,8 +75,14 @@ void solve() {
             else break;
         }
     }
+    mini=min(mini,b[j]);
+    if(i<=0){
+        cout<<i+1<<" "<<j+1<<endl;
+        return;
+    }
     for(int k=i-1;k>=0;k--){
         if(a[k].first<=mini){
+            mini=a[k].first;
             i--;
         }else break;
     }

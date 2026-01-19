@@ -1,3 +1,6 @@
+//understand max 1's length will decide the area
+//and 1's length subarray will be b/w two 0's
+//hence observe the pattern as image
 #include <bits/stdc++.h>
 using namespace std;
 
