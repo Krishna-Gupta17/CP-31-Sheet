@@ -3,7 +3,7 @@
 // then checking for gcd 
 //In first approach-> We observed that no need to check for sum/2, sum/3....
 //because max gcd will exist when 2 segement will be there only.
-//Because that will be always smaller gcd finded 
+//Because that will be always smaller or eqal to gcd finded 
 #include <bits/stdc++.h>
 using namespace std;
 
