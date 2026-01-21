@@ -1,4 +1,5 @@
-//see image common bits of numbrs not at their correct position se x banega jo hamesha swap krke sort kr payega
+//see image common bits of numbrs not at their correct position se x banega 
+//observe jo common bits ka x banega wo hamesha swap krke sort kr payega
 // Don't confuse -> Agar ek bhi common bit nii mili to zero hamesha kam kr dega
 #include <bits/stdc++.h>
 using namespace std;
