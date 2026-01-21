@@ -51,7 +51,7 @@ void solve() {
     int n;
     cin>>n;
     int x;
-    int ans=(1<<30)-1; // starting mein sari bits common ke liye max number liya binary ka range mein isme 30 consecutive 1 hai binary mein
+    int ans=(1<<30)-1; // starting mein sari bits common ke liye max number liya binary ka (question ki range) mein isme 30 consecutive 1 hai binary mein
     for(int i=0;i<n;i++){
         cin>>x;
         if(x!=i) ans&=x;
