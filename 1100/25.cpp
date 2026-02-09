@@ -1,3 +1,25 @@
+// TWO CONDITIONS (NECESSARY AND EFFICIENT) FOR YES->
+//(1) string s should be periodic
+//(2) if no of distinct chanracter in srting s is greater than 1 => no two consectuve element should occure
+
+//WHY? ->
+// ME-> 
+// abcd yes
+// abbcd yes
+// babcd yes
+// bacdb yes
+
+//I observed that if no of distinct chanracter in srting s is greater than 1 => no two consectuve element should occure
+//And between two same characters if no of distinct character is less than all diffrent chracter present in s except himself 
+// => If both these occure => YES
+
+// How i figure periodicity from my observation
+// Try to create a string from char a,b,c,d for yes according to my both conditions
+// Dusri condition fullfill krne ke liye agar ek se jyada baar koi character hai to un dono ke biche sare charater lane ka try karoge
+// Jo end mein periodic ki trf hi refer krega 
+// Bana ke hi dekho samjh jaoge
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -45,6 +67,29 @@ const int INF = LLONG_MAX >> 1;
 
 void solve() {
     // write your solution here
+    string s;
+    cin>>s;
+    int n=s.size();
+    set<char>st;
+    for(int i=0;i<s.size();i++) st.insert(s[i]);
+    if(st.size()==1){
+        cout<<"YES"<<endl;
+        return;
+    }
+    for(int i=0;i<n-1;i++){
+        if(s[i]==s[i+1]){
+            cout<<"NO"<<endl;
+            return;
+        }
+    }
+    int k=st.size();
+    for(int i=0;i<n-k;i++){
+        if(s[i]!=s[i+k]){
+            cout<<"NO"<<endl;
+            return;
+        }
+    }
+    cout<<"YES"<<endl;
 }
 
 signed main() {
