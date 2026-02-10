@@ -1,4 +1,8 @@
-// We check from gcd because if gcd can't devide, no devisor of gcd can't devide 
+// We check from gcd
+//Why?->
+// if choose gcd two conditions->
+// (1.) gcd does not devide any => gcd is answer
+// (2.) gcd devides any => all it's devisors will be able to devide it => this is main reason we don't check for devisors/factors.
 #include <bits/stdc++.h>
 using namespace std;
 

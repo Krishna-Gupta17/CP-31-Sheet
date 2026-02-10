@@ -47,12 +47,32 @@ void solve() {
     // write your solution here
     int n,q;
     cin>>n>>q;
-    map<int,int>m;
-    int x;
-    for(int i=1;i<=n;i++){
-        cin>>x;
-        m[x]=min(i,m[x]);
+    vector<int>v;
+    for(int i=0;i<n;i++){
+        cin>>v[i];
     }
+    int x;
+    for(int i=0;i<q;i++){
+        cin>>x;
+        int prev=v[0];
+        if(x==prev){
+            cout<<1<<" ";
+            continue;
+        }
+        for(int j=1;j<n;j++){
+            if(x==v[j]){
+                int temp=v[j];
+                v[j]=prev;
+                v[0]=temp;
+                cout<<j+1<<" ";
+            }else{
+                int temp=v[j];
+                v[j]=prev;
+                prev=temp;
+            }
+        }
+    }
+    cout<<endl;
 }
 
 signed main() {
@@ -60,7 +80,8 @@ signed main() {
     cin.tie(NULL);
 
     int tc;
-    cin >> tc;
+    // cin >> tc;
+    tc=1;
     while (tc--) {
         solve();
     }
