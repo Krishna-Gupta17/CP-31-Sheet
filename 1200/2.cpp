@@ -1,3 +1,8 @@
+// We know that remainder of a number n with 10^k get us last k digits.
+// Since it is given that there always exist a answer.
+// We can use upper approach , but it can take much higher t.c.
+// So we think in binary -> remainder of a binary number with 2^k gives last k digits of binary
+// And maximum number in binary according to constrains can have max to max 60 bits
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -21,6 +26,24 @@ const int INF = LLONG_MAX >> 1;
 //}
 //vector<int>primes=sieve(n);
 
+//set<int> factors(int n){
+    //set<int>primes;
+    //if(n%2==0){
+        //primes.insert(2);
+        //while(n%2==0) n/=2;
+    //}
+    //for(int i=3;i*i<=n;i+=2){
+        //if(n%i==0){
+            //primes.insert(i);
+            //while(n%i==0) n/=i;
+        //}
+    //}
+    //if(n>1) primes.insert(n);
+    //return primes;
+//}
+//O(sqrt(n)) -> A better method in log(n) is spf sieve
+//set<int>primefactors=factors(n);
+
 //string removeSize2substring(const string &s){
     //string res;
     //for(char c:s){
@@ -43,12 +66,12 @@ const int INF = LLONG_MAX >> 1;
 //}
 //string res = removePattern(s,\"abc\");
 
-void printv(vector<int>&v){
-    int n=v.size();
-    for(int i=0;i<n;i++) cout<<v[i]<<" ";
-    cout<<endl;
-    return;
-}
+// void printv(vector<int>&v){
+//     int n=v.size();
+//     for(int i=0;i<n;i++) cout<<v[i]<<" ";
+//     cout<<endl;
+//     return;
+// }
  
 // void printpv(vector<pair<int,int>>&v){
 //     int n=v.size();
@@ -61,20 +84,23 @@ void solve() {
     // write your solution here
     int n;
     cin>>n;
-    vector<int>v(n),l(n),r(n);
-    int x=0;
+    set<int>st;
     for(int i=0;i<n;i++){
-        cin>>v[i];
-        l[i]=__gcd(x,v[i]);
-        x=l[i];
+        int x;
+        cin>>x;
+        st.insert(x);
     }
-    x=0;
-    for(int i=n-1;i>=0;i--){
-        r[i]=__gcd(x,v[i]);
-        x=r[i];
+    for(int k=1;k<=60;k++){
+        set<int>d;
+        int p=1LL<<k;
+        for(auto x:st){
+            d.insert(x&(p-1));
+        }
+        if(d.size()==2){
+            cout<<p<<endl;
+            return;
+        }
     }
-    printv(l);
-    printv(r);
 }
 
 signed main() {
