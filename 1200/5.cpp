@@ -1,5 +1,5 @@
 // Max and second max position for each is core of question
-// Also -1 insertion
+// Also -1 insertion works but 0 fails on edge cases
 #include <bits/stdc++.h>
 using namespace std;
 
