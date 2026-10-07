@@ -168,7 +168,7 @@ public:
 			lazy[ind] = 0; 
 		}
 
-		// no overlap return 0; 
+		// no overlap return INT_MAX; 
 		if(high < l or r < low) {
 			return INT_MAX; 
 		}
