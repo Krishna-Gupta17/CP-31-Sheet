@@ -275,6 +275,7 @@ public:
 		return left + right; 
 	}
 };
+
 int main() {
 	#ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin); 
