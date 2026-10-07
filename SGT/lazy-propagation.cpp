@@ -183,11 +183,12 @@ public:
 	}
 };
 
-
-class ST {
+// Even flip => no effect
+// Odd flip => flip => seg[ind]=(high - low + 1) - seg[ind]
+class STFlip {
 	vector<int> seg, lazy; 
 public: 
-	ST(int n) {
+	STFlip(int n) {
 		seg.resize(4 * n); 
 		lazy.resize(4 * n); 
 	}
