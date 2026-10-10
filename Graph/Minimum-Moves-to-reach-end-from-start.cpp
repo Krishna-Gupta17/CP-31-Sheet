@@ -155,10 +155,8 @@ int moves(int s,int e,vector<int>&v){
         if(x==e) return steps;
         for(auto it:v){
             int dest=x*it;
-            vis[it]=1;
             if(dest>e || vis[dest]==1) continue;
             q.push({dest,steps+1});
-            // Need because in next time it got multilied, we can also use it before multiplication by vis[x]=1;
             vis[dest]=1;
         }
     }
