@@ -235,14 +235,42 @@ void build(int ind, int low, int high, int arr[]) {
 
 void solve() {
     // write your solution here
+    // 26+26^2+26^3 > 1000+999+999
+    // Hence brute force in string from 1 to 3
     int n;
     cin>>n;
     string s;
     cin>>s;
-    string ans="";
-    vector<int>v(26,0);
-    for(int i=0;i<n;i++){
-        
+    for(char i='a';i<='z';i++){
+        if(s.find(i)==string::npos){
+            cout<<i<<endl;
+            return;
+        }
+    }
+    for(char i='a';i<='z';i++){
+        for(char j='a';j<='z';j++){
+            string temp="";
+            temp+=i;
+            temp+=j;
+            if(s.find(temp)==string::npos){
+                cout<<temp<<endl;
+                return;
+            }
+        }
+    }
+    for(char i='a';i<='z';i++){
+        for(char j='a';j<='z';j++){
+            for(char k='a';k<='z';k++){
+                string temp="";
+                temp+=i;
+                temp+=j;
+                temp+=k;
+                if(s.find(temp)==string::npos){
+                    cout<<temp<<endl;
+                    return;
+                }
+            }
+        }
     }
 }
 
