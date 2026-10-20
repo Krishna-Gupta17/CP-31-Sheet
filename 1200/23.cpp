@@ -231,7 +231,7 @@ void build(int ind, int low, int high, int arr[]) {
 //     cout<<endl;
 //     return;
 // }
-
+ 
 
 void solve() {
     // write your solution here
