@@ -239,6 +239,11 @@ void solve() {
     cin>>n;
     string s;
     cin>>s;
+    string ans="";
+    vector<int>v(26,0);
+    for(int i=0;i<n;i++){
+        
+    }
 }
 
 signed main() {
