@@ -234,6 +234,30 @@ void build(int ind, int low, int high, int arr[]) {
 
 void solve() {
     // write your solution here
+    int n;
+    cin>>n;
+    vector<pair<int,int>>v(n);
+    set<int>st;
+    for(int i=0;i<n;i++){
+        cin>>v[i].first;
+        v[i].second=i+1;
+        st.insert(v[i].first);
+    }
+    if(st.size()==1){
+        cout<<"NO"<<endl;
+        return;
+    }
+    sort(v.begin(),v.end());
+    cout<<"YES"<<endl;
+    int j=n-1;
+    while(v[j].first != v[0].first){
+        cout<<v[0].second<<" "<<v[j].second<<endl;
+        j--;
+    }
+    while(j>=1){
+        cout<<v[n-1].second<<" "<<v[j].second<<endl;
+        j--;
+    }
 }
 
 signed main() {
