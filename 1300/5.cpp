@@ -5,10 +5,10 @@ using namespace std;
 #define int long long
 #define setbits(n) __builtin_popcountll(n)
 
-const int MOD = 1e9 + 7;
+const int MOD = 998244353;
 const int INF = LLONG_MAX >> 1;
 
-/*
+
 template <uint32_t MOD>
 struct ModularInt {
     int x = 0;
@@ -95,7 +95,7 @@ struct ModularInt {
     }
 };
 using mint = ModularInt<MOD>;
-*/
+
 /*
 // T.C. => O(sqrt(n))
 int countDivisors(long long n) {
@@ -270,10 +270,29 @@ void solve() {
     string s;
     cin>>s;
     int n=s.size();
-    int z=0,o=0;
+    int cnt=1,minr=0;
+    mint sq=1;
     for(int i=0;i<n-1;i++){
-        
+        if(s[i]==s[i+1]){
+            cnt++;
+        }
+        else{
+            if(cnt==1) continue;
+            sq*=cnt;
+            minr+=(cnt-1);
+            cnt=1;
+        }
     }
+    if(cnt>1){
+        sq*=cnt;
+        minr+=(cnt-1);
+    }
+    int fac=minr;
+    while(fac>=1){
+        sq*=fac;
+        fac--;
+    }
+    cout<<minr<<" "<<sq<<endl;
 }
 
 signed main() {
