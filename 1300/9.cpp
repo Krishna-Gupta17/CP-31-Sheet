@@ -269,6 +269,40 @@ void solve() {
     // write your solution here
     int n;
     cin>>n;
+    map<int,int>mp;
+    vector<vector<int>>v(n);
+    for(int i=0;i<n;i++){
+        int k;
+        cin>>k;
+        for(int j=0;j<k;j++){
+            int x;
+            cin>>x;
+            v[i].push_back(x);
+            mp[x]++;
+        }
+    }
+    for(int i=0;i<n;i++){
+        for(int j=0;j<v[i].size();j++){
+            mp[v[i][j]]--;
+            if(mp[v[i][j]]==0) mp.erase(v[i][j]);
+        }
+        bool flag=true;
+        for(int j=0;j<v[i].size();j++){
+            if(mp.find(v[i][j])==mp.end()){
+                flag=false;
+                break;
+            }
+        }
+        if(flag){
+            cout<<"Yes"<<endl;
+            return;
+        }
+        for(int j=0;j<v[i].size();j++){
+            mp[v[i][j]]++;
+        }
+    }
+    cout<<"No"<<endl;
+    return;
 }
 
 signed main() {
