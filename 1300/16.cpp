@@ -267,6 +267,7 @@ int maxLengthPositive(vector<int>& v,int s) {
 
 void solve() {
     // write your solution here
+    // used power of 2 to remove tle
     int n,w;
     cin>>n>>w;
     map<int,int,greater<int>>mp;
