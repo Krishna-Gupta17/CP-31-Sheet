@@ -273,11 +273,36 @@ void solve() {
     for(int i=0;i<n;i++){
         int x;
         cin>>x;
+        mp[log2(x)]++;
     }
-    int h=1;
-    while(mp.size()){
-        while()
+    int h=1,sum=0,used=0;
+    while(used<n){
+        int rem=w-sum;
+        if(rem<=0){
+            h++;
+            sum=0;
+        }
+        else{
+            int g=-1;
+            for(auto &x:mp){
+                if((1<<x.first)<=rem){
+                    g=x.first;
+                    x.second--;
+                    if(x.second==0) mp.erase(x.first);
+                    break;
+                }
+            }
+            if(g==-1){
+                h++;
+                sum=0;
+            }
+            else{
+                sum+=(1<<g);
+                used++;
+            }
+        }
     }
+    cout<<h<<endl;
 }
 
 signed main() {
