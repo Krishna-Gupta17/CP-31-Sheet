@@ -258,12 +258,12 @@ int maxLengthPositive(vector<int>& v,int s) {
 //     return;
 // }
 
-void printpv(vector<pair<char,int>>&v){
-    int n=v.size();
-    for(int i=0;i<n;i++) cout<<" {"<<v[i].first<<" "<<v[i].second<<" }";
-    cout<<endl;
-    return;
-}
+// void printpv(vector<pair<int,int>>&v){
+//     int n=v.size();
+//     for(int i=0;i<n;i++) cout<<" {"<<v[i].first<<" "<<v[i].second<<" }";
+//     cout<<endl;
+//     return;
+// }
 
 /*
 int power(int a,int b) {
@@ -278,23 +278,25 @@ int power(int a,int b) {
 */
 void solve() {
     // write your solution here
-    string d;
-    cin>>d;
-    int n=d.size();
-    string s="";
-    for(int i=0;i<n;i++){
-        
+    string s;
+    cin>>s;
+    int n=s.size();
+    int w=0;
+    vector<int>p(n),l(n);
+    for(int i=0;i+1<n;i++){
+        if(s[i]=='v' && s[i+1]=='v') w++;
+        p[i]=w;
     }
-    vector<pair<char,int>>v;
-    v.push_back({s[0],1});
-    for(int i=1;i<n;i++){
-        if(v.back().first==s[i]) v.back().second++;
-        else v.push_back({s[i],1});
+    w=0;
+    for(int i=n-1;i-1>=0;i--){
+        if(s[i]=='v' && s[i-1]=='v') w++;
+        l[i]=w;
     }
-    vector<pair<char,int>>f;
-    for(int i=0;i<v.size();i++){
-        if(v[i].first=='v' && )
+    int ans=0;
+    for(int i=1;i<n-1;i++){
+        if(s[i]=='o') ans+=(p[i-1]*l[i+1]);
     }
+    cout<<ans<<endl;
 }
 
 signed main() {
@@ -302,7 +304,7 @@ signed main() {
     cin.tie(NULL);
 
     int tc=1;
-    // cin >> tc;
+    //cin >> tc;
     while (tc--) {
         solve();
     }
