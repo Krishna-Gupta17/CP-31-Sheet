@@ -251,12 +251,12 @@ int maxLengthPositive(vector<int>& v,int s) {
     return maxl;
 }
 */
-void printv(vector<int>&v){
-    int n=v.size();
-    for(int i=0;i<n;i++) cout<<v[i]<<" ";
-    cout<<endl;
-    return;
-}
+// void printv(vector<int>&v){
+//     int n=v.size();
+//     for(int i=0;i<n;i++) cout<<v[i]<<" ";
+//     cout<<endl;
+//     return;
+// }
 
 // void printpv(vector<pair<int,int>>&v){
 //     int n=v.size();
@@ -278,26 +278,29 @@ int power(int a,int b) {
 */
 void solve() {
     // write your solution here
-    int n;
-    cin>>n;
+    int n, h;
+    cin>>n>>h;
     vector<int>v(n);
-    map<int,int>mp;
-    int sum=0;
-    for(int i=0;i<n;i++){
-        int x;
-        cin>>x;
-        mp[x]++;
-        sum+=x;
-        v[i]=x;
+    for(auto &x:v) cin>>x;
+    int i=0, j=n-1;
+    int ans=-1;
+    while(i<=j){
+        int mid=(i+j)>>1;
+        vector<int>d(mid+1);
+        for(int k=0;k<=mid;k++) d[k]=v[k];
+        sort(d.begin(),d.end(),greater<int>());
+        int sum=0;
+        for(int l=0;l<mid+1;l+=2){
+            sum+=d[l];
+        }
+        if(sum>h) j=mid-1;
+        else{
+            ans=mid;
+            i=mid+1;
+        } 
+       // cout<<mid<<" "<<i<<" "<<j<<endl;
     }
-    cout<<sum<<" ";
-    vector<int>ans;
-    for(int i=0;i<n;i++){
-        int rem=sum-v[i];
-        if(mp.find(rem)!=mp.end() && mp[rem]>1) ans.push_back(i+1);
-    }
-    cout<<ans.size()<<endl;
-    printv(ans);
+    cout<< ans+1<<endl;
 }
 
 signed main() {
@@ -305,7 +308,7 @@ signed main() {
     cin.tie(NULL);
 
     int tc=1;
-    // cin >> tc;
+    //cin >> tc;
     while (tc--) {
         solve();
     }
