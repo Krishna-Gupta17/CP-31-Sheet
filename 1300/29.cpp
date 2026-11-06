@@ -122,11 +122,11 @@ public:
 /*
 class SGTree {
     vector<int> seg;
-    public:
-    SGTree(int n) {
-       seg.resize(4 * n + 1);
-    }
-    void build(int ind, int low, int high, int arr[]) {
+public:
+SGTree(int n) {
+   seg.resize(4 * n + 1);
+}
+void build(int ind, int low, int high, int arr[]) {
         if (low == high) {
             seg[ind] = arr[low];
             return;
@@ -276,21 +276,43 @@ int power(int a,int b) {
     return ans;
 }
 */
+
+void dfs(vector<int>&vis,vector<vector<int>>&v,int node,set<int>&st1,set<int>&st2,int color){
+    if(color==0) st1.insert(node);
+    else st2.insert(node);
+    vis[node]=1;
+    for (int i=0;i<v[node].size();i++){
+        if(vis[v[node][i]]==0) dfs(vis,v,v[node][i],st1, st2,color^1);
+    }
+}
+// In place of set we can do by using two variables
 void solve() {
     // write your solution here
     int n;
     cin>>n;
+    vector<vector<int>>v(n+1);
+    vector<int>vis(n+1);
+    for(int i=0;i<n-1;i++){
+        int u,b;
+        cin>>u>>b;
+        v[u].push_back(b);
+        v[b].push_back(u);
+    }
     set<int>st1,st2;
-    vector<int>edge(n+1);
-     
+    for(int i=1;i<=n;i++){
+        if(vis[i]==0) dfs(vis, v,i,st1,st2, 0);
+    }
+    int l=st1.size();
+    int r=st2.size();
+    cout<<l*r-(n-1)<<endl;
 }
 
 signed main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int tc;
-    cin >> tc;
+    int tc=1;
+    //cin >> tc;
     while (tc--) {
         solve();
     }
