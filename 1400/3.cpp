@@ -276,13 +276,43 @@ int power(int a,int b) {
     return ans;
 }
 */
+bool check(vector<pair<int,int>>&v,int k){
+    int n=v.size();
+    int l=0,r=0;
+    for(int i=0;i<n;i++){
+        // Since hame segement mein bhi rehna hai
+        // [l-k,r+k] intersection [v[i].first,v[i].second]
+        l=max(l-k,v[i].first);
+        r=min(r+k,v[i].second);
+        // If nothing in common means intersection empty => false
+        if(l>r) return false;
+    }
+    return true;
+}
 void solve() {
     // write your solution here
     int n;
     cin>>n;
+    vector<pair<int,int>>v(n);
+    int j=0;
     for(int i=0;i<n;i++){
-        
+        int l,r;
+        cin>>l>>r;
+        v[i]={l,r};
+        j=max({j,l,r});
     }
+    int i=0;
+    int ans=j;
+    while(i<=j){
+        int mid=(i+j)/2;
+        // cout<<mid<<" "<<check(v,mid)<<endl;
+        if(check(v,mid)){
+            ans=mid;
+            j=mid-1;
+        }
+        else i=mid+1;
+    }
+    cout<<ans<<endl;
 }
 
 signed main() {
