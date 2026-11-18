@@ -251,12 +251,12 @@ int maxLengthPositive(vector<int>& v,int s) {
     return maxl;
 }
 */
-// void printv(vector<int>&v){
-//     int n=v.size();
-//     for(int i=0;i<n;i++) cout<<v[i]<<" ";
-//     cout<<endl;
-//     return;
-// }
+void printv(vector<int>&v){
+    int n=v.size();
+    for(int i=0;i<n;i++) cout<<v[i]<<" ";
+    cout<<endl;
+    return;
+}
 
 // void printpv(vector<pair<int,int>>&v){
 //     int n=v.size();
@@ -265,43 +265,81 @@ int maxLengthPositive(vector<int>& v,int s) {
 //     return;
 // }
 
+void printvv(vector<vector<int>>& v){
+    cout << v.size() << endl;
+    for(int i=0;i<v.size();i++){
+        bool flag=false;
+        for(int j=0;j<v[i].size();j++){
+            cout<<v[i][j]<<" ";
+            flag=true;
+        }
+        if(flag) cout<<endl;
+    }
+    cout<<"version end"<<endl;
+}
+
 /*
 int power(int a,int b) {
-    int ans=1;
+    int limit=1;
     while(b){
-        if(b&1) ans*=a;
+        if(b&1) limit*=a;
         a*=a;
         b>>=1;
     }
-    return ans;
+    return limit;
 }
 */
 void solve() {
     // write your solution here
     int n;
     cin>>n;
-    vector<int>v(n);
-    for(auto &x:v) cin>>x;
-    for(int i=n-2;i>=0;i--){
-        v[i]=(v[i]&v[i+1]);
+    vector<int>d(n);
+    vector<vector<int>>v(31);
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        d[i]=x;
+        string s="";
+        while(x){
+            s+=(x%2 +'0');
+            x/=2;
+        }
+        int p=s.size();
+        // cout<<s<<endl;
+        for(int j=p;j<31;j++) s+='0';
+        // cout<<s<<endl;
+        // cout<<s.size()<<endl;
+        for(int j=0;j<s.size();j++){
+            if(s[j]=='0') v[j].push_back(i);
+        }
     }
+    // printv(v[0]);
     int q;
     cin>>q;
     while(q--){
-        int i,k;
-        cin>>i>>k;
-        i--;
-        int j=n-1;
-        int ans=-1;
-        while(i<=j){
-            int mid=(i+j)/2;
-            if(v[mid]<k) i=mid+1;
+        int l,k;
+        cin>>l>>k;
+        l--;
+        int x=d[l];
+        // cout<<x<<endl;
+        if(d[l]<k){
+            cout<<-1<<" ";
+            continue;
+        }
+        int ans=l+1;
+        int limit=n;
+        for(int i=30;i>=0;i--){
+            auto it=lower_bound(v[i].begin(),v[i].end(),l);
+            int idx=(it==v[i].end())?n:*it;
+            if((k>>i)&1){
+                limit=min(limit,idx);
+            }
+            // ith bit of k=0, lowe bits can shrink the value so store the greater values.
             else{
-                i=mid+1;
-                ans=mid+1;
+                ans=max(ans,min(limit,idx));
             }
         }
-        cout<<ans<<" ";
+        cout<<max(limit,ans)<<" ";
     }
     cout<<endl;
 }
